@@ -1,0 +1,82 @@
+<section class="container">
+  <div class="gauche">
+      <h1>Panier</h1>
+      <div class = "prodInfo">
+        <ul>
+          <!---- Affichage Dynamique des produits du panier -->
+          <li *ngFor = "let Produit of pan; let index = index;">
+            <form class ="form" #prixForm = "ngForm" (ngSubmit) = "onClickSubmit(prixForm)">
+        <span>{{ Produit.getNombre }}
+        <button (click) = "onPlus(Produit.getId)"> + </button> <button (click) = "onMoins(Produit.getId)"> - </button></span>
+         :  {{ Produit.getNom}} à
+            <input
+            type="hidden"
+            name="Prodid" ngModel= {{Produit.getId}}>
+            <input
+            type = "number" min="0.01"  id = "newPrix" placeholder={{Produit.getPrix}}
+            name = "prix"  ngModel  required> €
+          </form>
+          </li>
+          <p> <button (click) = "onFact()">Facturation</button> <button (click) = "onReset()">Reset</button></p>
+        </ul>
+      </div>
+      <!---- Nouveau Produit
+      <h2>Nouveau Produit</h2>
+      <div>
+        <form class ="form" #prixForm = "ngForm" (ngSubmit) = "onNewProduit(prixForm)">
+          <input
+            type = "string" name="nom" ngModel  required
+            placeholder="Nom">
+          <input
+            type = "number" min="0.01"  id = "newPrix"
+            name = "prix"  ngModel  required
+            placeholder="Prix"> €
+            Importé ?
+          <input
+          type = "checkbox"  name = "importes">
+          <input
+          type = "number" min="0"  id = "type"
+          placeholder="Type"
+          >
+          <p> <button (click) = "onNewProduit(prixForm)">Validation</button>
+        </form>
+
+      </div>
+      -->
+        </div>
+
+
+  <div class="droite">
+    <h1>Facture</h1>
+    <div *ngIf="showTotale">
+    <article>
+        <ul>
+          <!---- Affichage Dynamique des produits du panier et de leurs prix taxé-->
+          <li *ngFor = "let Produit of pan; let index = index;">
+           <div *ngIf="(Produit.getNombre != 0) && (Produit.getPrix >= 0.01)" >
+            <span>{{ Produit.getNombre }}</span>
+        <span> : </span>
+        <span>{{ Produit.getNom}}</span>
+        <span> à {{ Produit.getPrix }} : {{prixPlusTaxe(Produit.getId)}} € TTC</span>
+           </div>
+          </li>
+        </ul>
+    </article>
+
+   <p>Montant des taxes : {{prixTaxeTotale()}} €</p>
+   <p>Total : {{prixTotale()}} €
+  </div>
+   </div>
+</section>
+
+  <!-- Footer
+  <footer>
+
+  </footer>
+
+
+</div>
+
+
+
+<router-outlet></router-outlet> -->

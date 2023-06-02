@@ -1,0 +1,35 @@
+html, body, section {
+height: 150%;
+font-size: 22px;
+}
+body {
+  font-family: Arial;
+  color: white;
+}
+h1{
+  padding:10px;
+}
+.gauche,.droite {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  top: 0;
+  overflow-x: hidden;
+}
+.gauche {
+  left: 0;
+  background-color: rgb(183, 187, 159);
+}
+.droite {
+  right: 0;
+  background-color: rgb(174, 147, 179);
+}
+
+input{
+  display: inline-block;
+}
+
+.produit p{
+  margin-left: 2%;
+  display: inline-block;
+}
